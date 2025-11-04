@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<!--
+  Future Imperfect by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Bio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+    /* Make sure the gallery layout still works */
+      .bio-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      
+      /* Wrapper for each item */
+      .bio-gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+        box-shadow: 0 6px 16px rgba(0,0,0,.22);
+      }
+      
+      /* Images themselves */
+      .bio-gallery-item img {
+        width: 100%;
+        height: 100%;
+        max-height: 260px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.2s ease, filter 0.2s ease;
+      }
+      
+      /* Slight zoom/dim on hover */
+      .bio-gallery-item:hover img {
+        transform: scale(1.03);
+        filter: brightness(0.85);
+      }
+      
+      /* Caption overlay */
+      .bio-gallery-item::after {
+        content: attr(data-caption);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      
+        padding: 0.45rem 0.6rem;
+        font-size: 0.85rem;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.0)
+        );
+        color: #fff;
+      
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        pointer-events: none;
+      }
+      
+      /* Show caption on hover */
+      .bio-gallery-item:hover::after {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Layout for bio section */
+      .bio-wrapper {
+        display: grid;
+        grid-template-columns: minmax(180px, 260px) minmax(0, 1fr);
+        gap: 2rem;
+        align-items: flex-start;
+      }
+
+      .bio-photo {
+        border-radius: 999px;
+        overflow: hidden;
+        max-width: 260px;
+        aspect-ratio: 1 / 1;
+        box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      }
+
+      .bio-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .bio-text p {
+        margin-bottom: 0.9rem;
+      }
+
+      /* Simple gallery grid */
+      .bio-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+
+      .bio-gallery img {
+        width: 100%;
+        height: 100%;
+        max-height: 260px;
+        object-fit: cover;
+        display: block;
+        border-radius: 6px;
+        box-shadow: 0 6px 16px rgba(0,0,0,.22);
+      }
+
+      @media (max-width: 736px) {
+        .bio-wrapper {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .bio-photo {
+          margin: 0 auto 1rem auto;
+        }
+      }
+      
+      /* Interests line */
+      .interests {
+        font-size: 1.75rem; /* makes emojis larger */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+        position: relative;
+      }
+      
+      /* Each emoji */
+      .interests .emoji {
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.15s ease;
+      }
+      
+      .interests .emoji:hover {
+        transform: translateY(-3px);
+      }
+      
+      /* Tooltip text */
+      .interests .emoji::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: 125%; /* position above emoji */
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(46, 49, 65, 0.95);
+        color: #fff;
+        padding: 0.35rem 0.6rem;
+        border-radius: 6px;
+        white-space: nowrap;
+        font-size: 0.8rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      
+      /* Tooltip arrow */
+      .interests .emoji::before {
+        content: '';
+        position: absolute;
+        bottom: 115%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-width: 5px;
+        border-style: solid;
+        border-color: rgba(46, 49, 65, 0.95) transparent transparent transparent;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+      
+      /* Show tooltip on hover */
+      .interests .emoji:hover::after,
+      .interests .emoji:hover::before {
+        opacity: 1;
+      }
+
+    </style>
+  </head>
+  <body class="single is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Header -->
+      <header id="header">
+        <h1><a href="index.html">shamangarcia.com</a></h1>
+        <nav class="links">
+          <ul>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="fun.html">Fun</a></li>
+
+          </ul>
+        </nav>
+        <nav class="main">
+          <ul>
+            <li class="menu">
+              <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Menu -->
+      <section id="menu">
+        <section>
+          <ul class="links">
+            <li><a href="education.html"><h3>Education</h3><p>Degrees & coursework</p></a></li>
+            <li><a href="resume.html"><h3>Resume</h3><p>Experience & skills</p></a></li>
+            <li><a href="portfolio.html"><h3>Projects</h3><p>School & personal work</p></a></li>
+            <li><a href="fun.html"><h3>Fun</h3><p>Games & challenges</p></a></li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Main -->
+      <div id="main">
+
+        <!-- Bio Section -->
+        <article class="post" id="about">
+          <header>
+            <div class="title">
+              <h2>About Me</h2>
+              <p>A quick snapshot of who I am right now.</p>
+            </div>
+          </header>
+
+          <section class="bio-wrapper">
+            <!-- Profile Photo -->
+            <div class="bio-photo">
+              <!-- Replace this with your own photo path -->
+              <img src="siteimages/bog.jpeg" alt="Photo of me" />
+            </div>
+
+            <!-- Bio Text -->
+            <div class="bio-text">
+              <!-- Replace this text with your actual bio -->
+              <p>
+                Hi, I’m Shaman Garcia, an environmental science student with a love for
+                forests, maps, and building things that people actually use. I split
+                my time between fieldwork, coding, and helping students get excited
+                about the natural world.
+              </p>
+              <p>
+                Right now, I’m especially interested in how geospatial tools and
+                programming can support restoration and conservation decisions.
+                Outside of school, you’ll usually find me rock climbing, biking, working on robotics
+                projects with students, or in a garage covered in sawdust.
+              </p>
+              <p>
+                This page is a small snapshot of what life looks like for me at the
+                moment—people, places, and little projects that keep me moving.
+              </p>
+                <div class="interests">
+                  <span class="emoji" data-tooltip="FRC #5530 Greenhill Lawnmowers">🤖</span>
+                  <span class="emoji" data-tooltip="Forests & Trees">🌳</span>
+                  <span class="emoji" data-tooltip="Michigan Seasons">🍁</span>
+                  <span class="emoji" data-tooltip="Cycling">🚴🏻‍♂️</span>
+                  <span class="emoji" data-tooltip="Rock Climbing️">🧗🏻‍♂️</span>
+                  <span class="emoji" data-tooltip="My Cat Daisy">🐈</span>
+                  <span class="emoji" data-tooltip="Graphic Design and Crafts">🖼</span>
+                  <span class="emoji" data-tooltip="Cartography & Maps">🗺</span>
+                  <span class="emoji" data-tooltip="Fitness & Weightlifting">🏋🏻</span>
+                  <span class="emoji" data-tooltip="Magic: The Gathering">🪄</span>
+                </div>
+            </div>
+          </section>
+        </article>
+
+        <!-- Gallery Section -->
+        <article class="post" id="gallery">
+          <header>
+            <div class="title">
+              <h2>Gallery</h2>
+              <p>Images that feel like my life right now.</p>
+            </div>
+          </header>
+
+          <section>
+            <section>
+              <div class="bio-gallery">
+                <div class="bio-gallery-item" data-caption="Natural spring(Bubbling Springs) at Camp AGQ">
+                  <img src="siteimages/bubbling.JPG" alt="" />
+                </div>
+            
+                <div class="bio-gallery-item" data-caption="Daisy enjoying the outdoors">
+                  <img src="siteimages/daisy.jpeg" alt="" />
+                </div>
+            
+                <div class="bio-gallery-item" data-caption="Log cutting competition at SEAS Bonfire 2025">
+                  <img src="siteimages/log.JPG" alt="" />
+                </div>
+            
+                <div class="bio-gallery-item" data-caption="Lab preparation for Woody Plants class at Mud Lake Bog">
+                  <img src="siteimages/bog.jpeg" alt="" />
+                </div>
+            
+                <div class="bio-gallery-item" data-caption="Succesful climb of my first V6!">
+                  <img src="siteimages/climbing.png" alt="" />
+                </div>
+                
+                <div class="bio-gallery-item" data-caption="First prescribed burn at Matthaei Botanical Gardens">
+                  <img src="siteimages/burn.jpeg" alt="" />
+                </div>
+                
+                <div class="bio-gallery-item" data-caption="Trip to Athens, Greece">
+                  <img src="siteimages/greece.jpeg" alt="" />
+                </div>
+                
+                <div class="bio-gallery-item" data-caption="Playing Magic: The Gathering">
+                  <img src="siteimages/magic.JPG" alt="" />
+                </div>
+                
+                <div class="bio-gallery-item" data-caption="Wideshot of Amman, Jordan">
+                  <img src="siteimages/jordan.jpeg" alt="" />
+                </div>
+                
+                <div class="bio-gallery-item" data-caption="Bedroom woodshop">
+                  <img src="siteimages/workshop.jpeg" alt="" />
+                </div>
+            </div>
+          </section>
+
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Footer -->
+      <section id="footer">
+        <ul class="icons">
+          <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+          <li><a href="mailto:youremail@example.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">
+          &copy; <span id="year"></span> Your Name. Design: <a href="http://html5up.net">HTML5 UP</a>.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

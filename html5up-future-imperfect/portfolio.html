@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<!--
+  Future Imperfect by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      /* Project tile grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.75rem;
+      }
+
+      .project-card {
+        display: block;
+        background: #white;
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+        background: #white;
+      }
+
+      .project-card h3 {
+        margin-bottom: 0.35rem;
+      }
+
+      .project-card p {
+        font-size: 0.9rem;
+        margin-bottom: 0.35rem;
+      }
+
+      .project-meta {
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+
+      .tag-list {
+        margin-top: 0.35rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+      }
+
+      .tag {
+        font-size: 0.75rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        opacity: 0.85;
+      }
+
+      @media (max-width: 736px) {
+        .project-card {
+          padding: 1rem 1.1rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="single is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Header -->
+      <header id="header">
+        <h1><a href="index.html">ShamanGarica.com</a></h1>
+        <nav class="links">
+          <ul>
+            <li><a href="#university-projects">University Projects</a></li>
+            <li><a href="#personal-projects">Personal Projects</a></li>
+          </ul>
+        </nav>
+        <nav class="main">
+          <ul>
+            <li class="menu">
+              <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Menu -->
+      <section id="menu">
+        <section>
+          <ul class="links">
+            <li>
+              <a href="#university-projects">
+                <h3>University Projects & Assignments</h3>
+                <p>Coursework and capstones</p>
+              </a>
+            </li>
+            <li>
+              <a href="#personal-projects">
+                <h3>Personal Projects</h3>
+                <p>Independent and side work</p>
+              </a>
+            </li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- Main -->
+      <div id="main">
+
+        <!-- University Projects and Assignments -->
+        <article class="post" id="university-projects">
+          <header>
+            <div class="title">
+              <h2>University Projects and Assignments</h2>
+              <p>Selected coursework, labs, and independent studies from the University of Michigan.</p>
+            </div>
+          </header>
+
+          <section>
+            <div class="projects-grid">
+
+                            <!-- EAS 447 – Forest Management Plan -->
+              <a href="portfolio/447final.pdf" class="project-card" target="_blank" rel="noopener">
+                <h3>Forest Management Plan – Camp Al-Gon-Quian</h3>
+                <p>
+                  Comprehensive management plan for 77 acres of YMCA forest at Burt Lake,
+                  addressing climate change, invasive species, wildfire risk, and opportunities
+                  for outdoor education.
+                </p>
+                <div class="project-meta">
+                  Course: EAS 447 Forest Management &bull; Format: Final Report (PDF)
+                </div>
+                <div class="tag-list">
+                  <span class="tag">Forest Management</span>
+                  <span class="tag">Restoration</span>
+                  <span class="tag">Michigan</span>
+                </div>
+              </a>
+
+              <!-- EAS 516 – Biomass analysis report -->
+              <a href="portfolio/516final.pdf" class="project-card" target="_blank" rel="noopener">
+                <h3>Biomass Analysis Using Family-Level Tree Identification</h3>
+                <p>
+                  Estimated above-ground biomass in Saginaw Forest by combining PyCrown canopy
+                  segmentation, NAIP image classification, and family-level allometric equations.
+                </p>
+                <div class="project-meta">
+                  Course: EAS 516 Remote Sensing &bull; Format: Final Report (PDF)
+                </div>
+                <div class="tag-list">
+                  <span class="tag">Remote Sensing</span>
+                  <span class="tag">Biomass</span>
+                  <span class="tag">Saginaw Forest</span>
+                </div>
+              </a>
+
+              <!-- EAS 516 – Biomass analysis presentation -->
+              <a href="portfolio/516finalpres.pdf" class="project-card" target="_blank" rel="noopener">
+                <h3>Biomass Analysis of Saginaw Forest – Presentation</h3>
+                <p>
+                  Slide deck summarizing canopy detection, supervised image classification,
+                  and biomass estimation workflow for Saginaw Forest.
+                </p>
+                <div class="project-meta">
+                  Course: EAS 516 Remote Sensing &bull; Format: Presentation (PDF)
+                </div>
+                <div class="tag-list">
+                  <span class="tag">Presentation</span>
+                  <span class="tag">Canopy Analysis</span>
+                  <span class="tag">NAIP</span>
+                </div>
+              </a>
+
+              <!-- EAS 549 – Tree growth & climate modeling -->
+              <a href="portfolio/549final.pdf" class="project-card" target="_blank" rel="noopener">
+                <h3>Predicting Growth in Michigan Tree Species</h3>
+                <p>
+                  Bayesian hierarchical model linking DBH, temperature, and precipitation to
+                  annual ring-width growth for multiple species at Stinchfield Woods and
+                  Radrick Forest.
+                </p>
+                <div class="project-meta">
+                  Course: EAS 549 Forest Modeling &bull; Format: Final Report (PDF) 
+                </div>
+                <div class="tag-list">
+                  <span class="tag">Bayesian Modeling</span>
+                  <span class="tag">Tree Rings</span>
+                  <span class="tag">Climate</span>
+                </div>
+                
+                <!-- EAS 549 – Tree growth & climate modeling -->
+              <a href="portfolio/549finalpres.pdf" class="project-card" target="_blank" rel="noopener">
+                <h3>Predicting Growth in Michigan Tree Species</h3>
+                <p>
+                  Slide deck summarizing the Bayesian hierarchical model linking DBH, temperature, and precipitation to
+                  annual ring-width growth for multiple species at Stinchfield Woods and
+                  Radrick Forest.
+                </p>
+                <div class="project-meta">
+                  Course: EAS 549 Forest Modeling &bull; Format: Final Presentation (PDF) 
+                </div>
+                <div class="tag-list">
+                  <span class="tag">Bayesian Modeling</span>
+                  <span class="tag">Tree Rings</span>
+                  <span class="tag">Climate</span>
+                </div>
+              </a>
+
+              <!-- LearnGala website tile -->
+              <a href="https://www.learngala.com/cases/9c315ed6-9406-4d44-995c-748e81540112"
+                 class="project-card" target="_blank" rel="noopener">
+                <h3>Interactive Forest Management Case Study (LearnGala)</h3>
+                <p>
+                  Web-based teaching case hosted on LearnGala that translates my graduate forest
+                  management and climate resilience work into an interactive narrative for students.
+                </p>
+                <div class="project-meta">
+                  Platform: LearnGala &bull; Format: Interactive Website
+                </div>
+                <div class="tag-list">
+                  <span class="tag">Case Study</span>
+                  <span class="tag">Teaching</span>
+                  <span class="tag">Forests</span>
+                </div>
+              </a>
+
+              </a>
+
+            </div>
+          </section>
+        </article>
+
+        <!-- Personal Projects -->
+        <article class="post" id="personal-projects">
+          <header>
+            <div class="title">
+              <h2>Personal Projects</h2>
+              <p>Independent work blending environmental science, coding, and making.</p>
+            </div>
+          </header>
+
+          <section>
+            <div class="projects-grid">
+
+              <!-- Example personal project tile 1 -->
+              <a href="project-trail-dashboard.html" class="project-card">
+                <h3>Local Trails GIS Dashboard</h3>
+                <p>
+                  Built an interactive web map of local hiking trails with difficulty, elevation,
+                  and ecological notes for each segment.
+                </p>
+                <div class="project-meta">
+                  Tools: ArcGIS Pro, ArcGIS Online
+                </div>
+                <div class="tag-list">
+                  <span class="tag">GIS</span>
+                  <span class="tag">Web Map</span>
+                  <span class="tag">Trails</span>
+                </div>
+              </a>
+
+              <!-- Example personal project tile 2 -->
+              <a href="project-robotics-tools.html" class="project-card">
+                <h3>Robotics Teaching Toolkit</h3>
+                <p>
+                  Created reusable lesson plans and example code for high school robotics,
+                  focusing on C++ control logic and team collaboration.
+                </p>
+                <div class="project-meta">
+                  Context: Greenhills Robotics Instruction
+                </div>
+                <div class="tag-list">
+                  <span class="tag">C++</span>
+                  <span class="tag">Robotics</span>
+                  <span class="tag">Education</span>
+                </div>
+              </a>
+
+              <!-- Example personal project tile 3 -->
+              <a href="project-cnc-signs.html" class="project-card">
+                <h3>CNC-Cut Trail Signage</h3>
+                <p>
+                  Designed and fabricated durable wooden trail signs using CNC machining
+                  and custom vector artwork.
+                </p>
+                <div class="project-meta">
+                  Tools: CNC Router, Graphic Design
+                </div>
+                <div class="tag-list">
+                  <span class="tag">CNC Machining</span>
+                  <span class="tag">Woodworking</span>
+                  <span class="tag">Design</span>
+                </div>
+              </a>
+
+              <!-- Example personal project tile 4 -->
+              <a href="project-portfolio-site.html" class="project-card">
+                <h3>Personal Portfolio Website</h3>
+                <p>
+                  Built and customized this portfolio site to showcase academic,
+                  professional, and creative work in one place.
+                </p>
+                <div class="project-meta">
+                  Stack: HTML5 UP, HTML, CSS, JavaScript
+                </div>
+                <div class="tag-list">
+                  <span class="tag">Web Dev</span>
+                  <span class="tag">Frontend</span>
+                  <span class="tag">HTML5 UP</span>
+                </div>
+              </a>
+
+            </div>
+          </section>
+        </article>
+
+      </div>
+
+      <!-- Footer -->
+      <section id="footer">
+        <ul class="icons">
+          <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+          <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">
+          &copy; <span id="year"></span> Your Name. Design: <a href="http://html5up.net">HTML5 UP</a>.
+        </p>
+      </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      // Set current year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

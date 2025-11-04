@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Fun — Browser Games</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+        gap: 2rem;
+      }
+      .game-card {
+        background: #white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      }
+      .game-card header h2 {
+        margin-bottom: .25rem;
+      }
+      .game-embed {
+        position: relative;
+        width: 100%;
+        height: 60vh;
+        min-height: 360px;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,.1);
+      }
+      .game-embed iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: #111;
+      }
+      .timer-fab {
+        position: fixed;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        z-index: 1000;
+        background: #2e3141;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        padding: .75rem 1rem;
+        border-radius: 9999px;
+        box-shadow: 0 10px 25px rgba(0,0,0,.25);
+        cursor: pointer;
+      }
+      .timer-fab .btn {
+        background: #8cc9f0;
+        color: #1b1f2a;
+        padding: .4rem .7rem;
+        border-radius: .75rem;
+        font-weight: bold;
+      }
+      .timer-fab .time { font-family: monospace; }
+    </style>
+  </head>
+  <body class="single is-preload">
+    <div id="wrapper">
+      <header id="header">
+        <h1><a href="index.html">ShamanGarcia.com</a></h1>
+        <nav class="links">
+          <ul>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="bio.html">Bio</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div id="main">
+        <article class="post">
+          <header>
+            <div class="title">
+              <h2>Play Your Favorite Geography Games</h2>
+              <p>Enjoy a collection of web-based geography games. Try to beat your best time!</p>
+            </div>
+          </header>
+          <div class="game-grid">
+            <div class="game-card" id="travle">
+              <header>
+                <h2>Travle</h2>
+                <p>Connect countries step-by-step to travel from a start to a target nation using shared borders.</p>
+                <p><em>How to play:</em> Type countries that border your last pick to move closer to the destination.</p>
+              </header>
+              <div class="game-embed">
+                <iframe src="https://www.travle.earth/" loading="lazy" title="Travle"></iframe>
+              </div>
+            </div>
+
+            <div class="game-card" id="worldle">
+              <header>
+                <h2>Worldle</h2>
+                <p>Guess the country from its silhouette and feedback on distance and direction.</p>
+                <p><em>How to play:</em> Enter a country; use hints to home in within six guesses.</p>
+              </header>
+              <div class="game-embed">
+                <iframe src="https://worldle.teuteuf.fr/" loading="lazy" title="Worldle"></iframe>
+              </div>
+            </div>
+
+            <div class="game-card" id="globle">
+              <header>
+                <h2>Globle</h2>
+                <p>Guess the mystery country as the globe colors warmer the closer you get.</p>
+                <p><em>How to play:</em> Type a country each turn; use the heat map color to navigate toward the answer.</p>
+              </header>
+              <div class="game-embed">
+                <iframe src="https://globle-game.com/" loading="lazy" title="Globle"></iframe>
+              </div>
+            </div>
+
+            <div class="game-card" id="flagle">
+              <header>
+                <h2>Flagle</h2>
+                <p>Identify the country flag as colored tiles reveal pieces of it with each guess.</p>
+                <p><em>How to play:</em> Guess a country; each miss uncovers more of the flag—solve in as few reveals as possible.</p>
+              </header>
+              <div class="game-embed">
+                <iframe src="https://www.flagle.io/" loading="lazy" title="Flagle"></iframe>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="post" id="leaderboard">
+          <header>
+            <div class="title">
+              <h2>Leaderboard</h2>
+              <p>Fastest completion times for all games combined.</p>
+            </div>
+          </header>
+          <section>
+            <div class="table-wrapper">
+              <table>
+                <thead><tr><th>Rank</th><th>Name</th><th>Date</th><th>Time</th></tr></thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
+            </div>
+            <ul class="actions">
+              <li><a class="button small" id="clear-board">Clear Leaderboard</a></li>
+            </ul>
+          </section>
+        </article>
+      </div>
+
+      <section id="footer">
+        <ul class="icons">
+          <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+          <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">&copy; <span id="year"></span> Your Name. Design: <a href="http://html5up.net">HTML5 UP</a>.</p>
+      </section>
+    </div>
+
+    <div class="timer-fab" id="timerFab" role="button">
+      <span class="time" id="timerDisplay">00:00.00</span>
+      <span class="btn" id="timerToggle">Start</span>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const display = document.getElementById('timerDisplay');
+      const toggleBtn = document.getElementById('timerToggle');
+      const fab = document.getElementById('timerFab');
+      const body = document.getElementById('leaderboard-body');
+      const clearBtn = document.getElementById('clear-board');
+
+      let startTs=null, running=false, raf=null, elapsed=0;
+      function fmt(ms){const m=Math.floor(ms/60000),s=Math.floor((ms%60000)/1000),cs=Math.floor((ms%1000)/10);return`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(cs).padStart(2,'0')}`;}
+      function tick(ts){if(!running)return;display.textContent=fmt(performance.now()-startTs+elapsed);raf=requestAnimationFrame(tick);}
+      function start(){running=true;startTs=performance.now();toggleBtn.textContent='Pause';raf=requestAnimationFrame(tick);}
+      function pause(){running=false;cancelAnimationFrame(raf);elapsed+=performance.now()-startTs;toggleBtn.textContent='Start';display.textContent=fmt(elapsed);const name=prompt('Enter your name for the leaderboard:');if(name){saveResult(name,elapsed);renderBoard();}}
+      function resetTimer(){elapsed=0;running=false;cancelAnimationFrame(raf);display.textContent='00:00.00';toggleBtn.textContent='Start';}
+      fab.addEventListener('click',()=>{if(!running)start();else pause();});
+
+      const KEY='funLeaderboard';
+      function loadBoard(){try{return JSON.parse(localStorage.getItem(KEY))||[];}catch{return[];}}
+      function saveBoard(a){localStorage.setItem(KEY,JSON.stringify(a));}
+      function saveResult(name,ms){const e={name,ms,date:new Date().toISOString()},a=loadBoard();a.push(e);a.sort((x,y)=>x.ms-y.ms);saveBoard(a);resetTimer();}
+      function renderBoard(){const a=loadBoard();body.innerHTML=a.map((e,i)=>{const d=new Date(e.date);return`<tr><td>${i+1}</td><td>${e.name}</td><td>${d.toLocaleDateString()}</td><td>${fmt(e.ms)}</td></tr>`;}).join('');}
+      clearBtn.addEventListener('click',()=>{if(confirm('Clear all leaderboard entries?')){saveBoard([]);renderBoard();}});
+      renderBoard();
+    </script>
+  </body>
+</html>
