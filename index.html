@@ -1,27 +1,95 @@
 <!DOCTYPE HTML>
-<!--
-  Future Imperfect by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
   <head>
     <title>Shaman Garcia</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-  </head>
-  <body class="is-preload">
 
+    <!-- Extra styles just for the simple home + dropdowns -->
+    <style>
+      /* Simple landing layout */
+      #main {
+        padding: 3rem 1.5rem;
+      }
+
+      .home-container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .home-hero h2 {
+        font-size: 2.4rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .home-hero p {
+        font-size: 1.05rem;
+        opacity: 0.9;
+        max-width: 640px;
+        margin: 0 auto 2.5rem auto;
+      }
+
+      .home-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+
+      .home-card {
+        display: block;
+        text-decoration: none;
+        background: #white;
+        padding: 1.75rem 1.5rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+        transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        text-align: left;
+      }
+
+      .home-card h3 {
+        margin: 0 0 0.4rem 0;
+      }
+
+      .home-card p {
+        margin: 0;
+        font-size: 0.95rem;
+        opacity: 0.9;
+      }
+
+      .home-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 28px rgba(0,0,0,0.45);
+        background: #white;
+      }
+
+
+      /* Small screens: stack top nav a bit nicer */
+      @media screen and (max-width: 736px) {
+        #header .links ul {
+          gap: 0.6rem;
+          flex-wrap: wrap;
+        }
+
+        .home-hero h2 {
+          font-size: 2rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="is-preload">
     <!-- Wrapper -->
     <div id="wrapper">
 
-      <!-- Header -->
+    
+     <!-- Header (restored to HTML5 UP original style) -->
       <header id="header">
         <h1><a href="index.html">ShamanGarcia.com</a></h1>
         <nav class="links">
           <ul>
-            <li><a href="education.html">Education</a></li>
             <li><a href="resume.html">Resume</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="bio.html">Bio</a></li>
@@ -37,236 +105,87 @@
         </nav>
       </header>
 
-      <!-- Menu (mobile) -->
-      <section id="menu">
 
-        <!-- Links -->
-        <section>
-          <ul class="links">
-            <li>
-              <a href="education.html">
-                <h3>Education</h3>
-                <p>Degrees, coursework & GPA</p>
-              </a>
-            </li>
-            <li>
-              <a href="resume.html">
-                <h3>Resume</h3>
-                <p>Teaching, leadership & experience</p>
-              </a>
-            </li>
-            <li>
-              <a href="portfolio.html">
-                <h3>Portfolio</h3>
-                <p>University projects & case studies</p>
-              </a>
-            </li>
-            <li>
-              <a href="bio.html">
-                <h3>Bio</h3>
-                <p>Photos, interests & story</p>
-              </a>
-            </li>
-            <li>
-              <a href="fun.html">
-                <h3>Fun</h3>
-                <p>Geography games & challenges</p>
-              </a>
-            </li>
-          </ul>
-        </section>
 
-      </section>
+      <!-- (Optional) Mobile menu could go here if you want, but we’re keeping it simple -->
 
-      <!-- Main -->
+      <!-- Main simple home content -->
       <div id="main">
-
-        <!-- Hero / Welcome -->
-        <article class="post">
-          <header>
-            <div class="title">
-              <h2>Hi, I’m Shaman.</h2>
-              <p>Environmental science, forests, geospatial data, and teaching.</p>
-            </div>
-          </header>
-
-          <a href="bio.html" class="image featured">
-            <!-- uses your own profile image -->
-            <img src="siteimages/bog.jpeg" alt="Photo of Shaman Garcia" />
-          </a>
-
-          <p>
-            I’m a graduate student in Environmental Science at the University of Michigan,
-            building on a B.S. in Environmental Science with a minor in Computer Science.
-            My work sits at the intersection of ecology, geospatial data, and decision-making:
-            from modeling tree growth and climate to mapping biomass and designing forest
-            management plans.
-          </p>
-
-          <p>
-            Outside the classroom, I’ve taught restoration ecology and woody plants labs,
-            worked with students in FIRST Robotics, and led environmental education programs
-            at camps and nature centers. A lot of my free time is spent rock climbing, biking,
-            exploring Michigan forests, or tinkering on projects in the woodshop.
-          </p>
-
-          <footer>
-            <ul class="actions">
-              <li><a href="education.html" class="button">View Education</a></li>
-              <li><a href="resume.html" class="button">View Resume</a></li>
-              <li><a href="portfolio.html" class="button">View Portfolio</a></li>
-              <li><a href="bio.html" class="button">More About Me</a></li>
-              <li><a href="fun.html" class="button">Play Geography Games</a></li>
-            </ul>
-          </footer>
-        </article>
-
-        <!-- Quick Highlights -->
-        <article class="post">
-          <header>
-            <div class="title">
-              <h2>What you’ll find here</h2>
-              <p>A quick overview of the main sections of this site.</p>
-            </div>
-          </header>
-
-          <section>
-            <div class="row">
-              <div class="col-6 col-12-small">
-                <h3><a href="education.html">Education</a></h3>
-                <p>
-                  M.S. in Environmental Science (in progress) and B.S. in Environmental Science
-                  with a Computer Science minor, both from the University of Michigan.
-                  Includes relevant coursework like geospatial data science, restoration ecology,
-                  and programming.
-                </p>
-              </div>
-              <div class="col-6 col-12-small">
-                <h3><a href="resume.html">Experience</a></h3>
-                <p>
-                  Teaching roles in restoration ecology and woody plants, robotics instruction,
-                  environmental education, and leadership positions at camp and in retail
-                  management—all focused on helping people learn and work better together.
-                </p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-6 col-12-small">
-                <h3><a href="portfolio.html">Portfolio</a></h3>
-                <p>
-                  A set of university projects and case studies, including forest management
-                  planning, biomass estimation from remote sensing, and Bayesian modeling of
-                  tree growth and climate.
-                </p>
-              </div>
-              <div class="col-6 col-12-small">
-                <h3><a href="bio.html">Bio & Gallery</a></h3>
-                <p>
-                  Photos and a short narrative about the places and hobbies that matter most—
-                  from prescribed burns and bogs to climbing, travel, and time outside with friends
-                  (and cats).
-                </p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12">
-                <h3><a href="fun.html">Fun</a></h3>
-                <p>
-                  A small collection of embedded geography games and a custom timer/leaderboard
-                  for anyone who wants to race the map.
-                </p>
-              </div>
-            </div>
+        <div class="home-container">
+          <section class="home-hero">
+            <h2>Hi, my name is Shaman.</h2>
+            <p>
+              I’m an environmental science student who loves forests, geospatial data, and teaching.
+              This site collects my resume, project portfolio, a short bio, and some fun geography games.
+            </p>
           </section>
-        </article>
 
+          <section class="home-grid">
+            <a class="home-card" href="resume.html">
+              <h3>Resume</h3>
+              <p>Education and work experience in environmental science, teaching, and leadership.</p>
+            </a>
+
+            <a class="home-card" href="portfolio.html">
+              <h3>Portfolio</h3>
+              <p>Class projects, case studies, and personal work in ecology, modeling, and mapping.</p>
+            </a>
+
+            <a class="home-card" href="bio.html">
+              <h3>Bio</h3>
+              <p>A short story about who I am, what I care about, and what I enjoy outside of class.</p>
+            </a>
+
+            <a class="home-card" href="fun.html">
+              <h3>Fun</h3>
+              <p>Geography games, timers, and a place to play with maps and countries.</p>
+            </a>
+          </section>
+        </div>
       </div>
-
-      <!-- Sidebar -->
-      <section id="sidebar">
-
-        <!-- Intro -->
-        <section id="intro">
-          <a href="bio.html" class="logo"><img src="siteimages/bog.jpeg" alt="Photo of Shaman" /></a>
-          <header>
-            <h2>Shaman Garcia</h2>
-            <p>Environmental science · Ecology · Geospatial data</p>
-          </header>
-        </section>
-
-        <!-- Highlights -->
-        <section>
-          <div class="mini-posts">
-
-            <article class="mini-post">
-              <header>
-                <h3><a href="portfolio.html">Forest & Climate Projects</a></h3>
-                <time class="published">Graduate & undergraduate work</time>
-              </header>
-              <a href="portfolio.html" class="image"><img src="siteimages/bubbling.JPG" alt="Field work in a bog" /></a>
-            </article>
-
-            <article class="mini-post">
-              <header>
-                <h3><a href="resume.html">Teaching & Mentoring</a></h3>
-                <time class="published">GSI, TA & robotics instruction</time>
-              </header>
-              <a href="resume.html" class="image"><img src="siteimages/team.jpg" alt="Sawing log at SEAS bonfire" /></a>
-            </article>
-
-            <article class="mini-post">
-              <header>
-                <h3><a href="fun.html">Geography Game Hub</a></h3>
-                <time class="published">Travle, Worldle, Globle & more</time>
-              </header>
-              <a href="fun.html" class="image"><img src="siteimages/greece.jpeg" alt="Playing games" /></a>
-            </article>
-
-          </div>
-        </section>
-
-        <!-- About -->
-        <section class="blurb">
-          <h2>About this site</h2>
-          <p>
-            This site pulls together my academic work, teaching experience, and some personal
-            projects into one place. It’s meant to be a snapshot of where I’m at right now:
-            studying how ecosystems work, learning better tools to understand them, and
-            helping other people get excited about the natural world.
-          </p>
-          <ul class="actions">
-            <li><a href="bio.html" class="button">Read my bio</a></li>
-          </ul>
-        </section>
-
-        <!-- Footer -->
-        <section id="footer">
-          <ul class="icons">
-            <!-- Replace # with your real links when you’re ready -->
-            <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-            <li><a href="mailto:youremail@example.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-          </ul>
-          <p class="copyright">
-            &copy; <span id="year"></span> Shaman Garcia. Design: <a href="http://html5up.net">HTML5 UP</a>.
-          </p>
-        </section>
-
-      </section>
 
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts from the template -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-      // Set footer year automatically
-      document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 
+    <!-- Small script to make dropdowns work on click -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var dropdownParents = document.querySelectorAll('#header .has-dropdown > a');
+
+        dropdownParents.forEach(function (trigger) {
+          trigger.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            var li = this.parentElement;
+            var isOpen = li.classList.contains('open');
+
+            // close all others
+            document.querySelectorAll('#header .has-dropdown').forEach(function (other) {
+              if (other !== li) other.classList.remove('open');
+            });
+
+            if (!isOpen) {
+              li.classList.add('open');
+            }
+          });
+        });
+
+        // Close dropdowns when clicking outside header
+        document.addEventListener('click', function (e) {
+          var header = document.getElementById('header');
+          if (!header.contains(e.target)) {
+            document.querySelectorAll('#header .has-dropdown').forEach(function (li) {
+              li.classList.remove('open');
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

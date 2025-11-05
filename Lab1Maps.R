@@ -2,7 +2,7 @@ library(ggplot2)
 library(sf)
 library(tidyverse)
 
-boulder <- st_read("C:/Users/shamangarcia/Desktop/648/versionControl1/lab1/BoulderSocialMedia.shp")
+boulder <- st_read("BoulderSocialMedia.shp")
 
 boulder
 
@@ -57,7 +57,7 @@ library(ggspatial)
 library(viridis)
 magma(10)
 
-boulder <- st_read("C:/Users/shamangarcia/Desktop/648/versionControl1/lab1/BoulderSocialMedia.shp")
+boulder <- st_read("BoulderSocialMedia.shp")
 
 #plot1
 ggplot() +
