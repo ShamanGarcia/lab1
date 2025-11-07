@@ -89,7 +89,7 @@ tm_shape(boulder) +
 # tmap_mode("plot")
 data("World")
 library(dplyr)
-borders <- st_read("borders.csv")
+borders <- st_read("borderfull.csv")
 world_joined <- left_join(World, borders, by = "name")
 
 write.csv(world_joined, "world_joined.csv")
