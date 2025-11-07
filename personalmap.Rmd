@@ -94,16 +94,17 @@ tm_shape(world_joined) +
 
 ```
 
-## Lab Questions:
+### Lab Questions:
 
-### Discuss the advantages and challenges associated with an open data science approach. Provide an example based on this week’s reading. (1-2 paragraphs)
+#### Discuss the advantages and challenges associated with an open data science approach. Provide an example based on this week’s reading. (1-2 paragraphs)
 
 An open data science approach means sharing data, code, and results so others can use and build on them. This helps make research more transparent, reproducible, and collaborative. It also speeds up discoveries because people don’t have to start from scratch. However, it can be challenging to protect privacy, keep data accurate, and give everyone equal access to tools and information. For example, this week’s reading showed how open climate data lets scientists worldwide study weather patterns together, but it also creates issues with data quality and consistency.
 
-### Create a markdown document that showcases an analysis of this week’s data or any other dataset of your choice. Include descriptive text that explains your analysis, and incorporate figures and geovisualizations.Include 1 chart and 1 map. Structure and explain your analysis with text, headings, highlights, images and other markdown basics.
+#### Create a markdown document that showcases an analysis of this week’s data or any other dataset of your choice. Include descriptive text that explains your analysis, and incorporate figures and geovisualizations.Include 1 chart and 1 map. Structure and explain your analysis with text, headings, highlights, images and other markdown basics.
 
 Completed above.
 
-### Bonus: Capture a screenshot of the history of your Git commits. Share your strategy for utilizing Git in your workflow.
+#### Bonus: Capture a screenshot of the history of your Git commits. Share your strategy for utilizing Git in your workflow.
 
+![Commit history](siteimages/commits.png)
 
