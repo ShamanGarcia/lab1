@@ -106,6 +106,5 @@ Completed above.
 
 #### Bonus: Capture a screenshot of the history of your Git commits. Share your strategy for utilizing Git in your workflow.
 
-![Commit history](siteimages/commits.png)
 In terms of version control, I mostly committed changes anytime I got to a point where the website or webpage I was working on looked how I envisioned it or when I added some functionality. 
-
+![Commit history](siteimages/commits.png)
