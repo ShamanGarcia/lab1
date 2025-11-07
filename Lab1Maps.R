@@ -2,6 +2,7 @@ library(ggplot2)
 library(sf)
 library(tidyverse)
 
+
 boulder <- st_read("BoulderSocialMedia.shp")
 
 boulder
@@ -87,11 +88,19 @@ tm_shape(boulder) +
 ## here we are using a simple dataset of the world 
 # tmap_mode("plot")
 data("World")
+library(dplyr)
+borders <- st_read("borders.csv")
+world_joined <- left_join(World, borders, by = "name")
+
+write.csv(world_joined, "world_joined.csv")
+
 tm_shape(World) +
   tm_polygons("gdp_cap_est", style='quantile', legend.title = "GDP Per Capita Estimate")
 
 ## the view mode creates an interactive map
 tmap_mode("view")
 
-tm_shape(World) +
-  tm_polygons("gdp_cap_est", style='quantile', legend.title = "GDP Per Capita Estimate")
+tm_shape(world_joined) +
+  tm_polygons("Number.of.Bordering.Countries", style='quantile', legend.title = "Number of Bordering Countries")
+tmap_mode("view")
+
