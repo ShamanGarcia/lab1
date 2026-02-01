@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>3D Scanning with Scaniverse — Shaman Garcia</title>
+
+  <style>
+    :root{
+      --bg: #f7f8f7;
+      --card: #ffffff;
+      --text: #1f2937;        /* slate-800 */
+      --muted: #6b7280;       /* gray-500 */
+      --border: #e5e7eb;      /* gray-200 */
+      --shadow: 0 10px 30px rgba(0,0,0,.06);
+
+      /* calm outdoors / geo accent */
+      --accent: #2f6f4e;      /* evergreen */
+      --accent-2: #2b4c7e;    /* muted map-blue */
+      --link: var(--accent);
+      --ring: rgba(47,111,78,.18);
+
+      --radius: 16px;
+      --maxw: 980px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(47,111,78,.10), transparent 60%),
+                  radial-gradient(900px 500px at 90% 0%, rgba(43,76,126,.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.65;
+    }
+
+    a{
+      color: var(--link);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(47,111,78,.25);
+    }
+    a:hover{
+      border-bottom-color: rgba(47,111,78,.55);
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(247,248,247,.75);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+
+    .nav{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand{
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .brand .title{
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .brand .subtitle{
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    main{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .hero{
+      padding: 26px 22px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.80));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    h1{
+      margin: 0 0 6px;
+      font-size: clamp(1.7rem, 3vw, 2.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.6);
+    }
+
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card .card-inner{
+      padding: 18px 18px 16px;
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+
+    p{
+      margin: 0 0 12px;
+      color: rgba(31,41,55,.95);
+    }
+    p:last-child{ margin-bottom: 0; }
+
+    .section-title{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(47,111,78,.06), rgba(255,255,255,0));
+    }
+
+    .section-title small{
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* Responsive iframe wrapper */
+    .embed{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #0b1220;
+    }
+    .embed iframe{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .caption{
+      padding: 12px 18px 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    footer{
+      max-width: var(--maxw);
+      margin: 24px auto 0;
+      padding: 0 20px 34px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hr{
+      height: 1px;
+      background: var(--border);
+      margin: 18px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="title">Shaman Garcia</div>
+        <div class="subtitle">3D Scanning Lab</div>
+      </div>
+      <div class="subtitle">Scaniverse photogrammetry models</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>3D Scanning with Scaniverse</h1>
+      <div class="meta">
+        <span class="pill"><span class="dot"></span>Write-up + model embeds</span>
+        <span class="pill">Author: Shaman Garcia</span>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="section-title">
+            <h2 style="margin:0;">Observations</h2>
+            <small>Process + results</small>
+          </div>
+          <div class="card-inner">
+            <p>
+              The first object I scanned was fairly large, and I was surprised by how easily the scanning software was able to capture it.
+              I expected the size to make the process more difficult, but the scan came together smoothly. One of the most interesting
+              aspects was how the software extrapolated features that I could not physically capture. For example, I was not able to raise
+              my arm high enough to take images of the top of the trailer, yet the software was still able to reasonably infer and reconstruct
+              what the top looked like. I was suprised to see how much noise remained on completely flat surfaces like the large walls of the trailer
+              but I can see this happening with the reflection of the metal. The result was more accurate than I anticipated, which highlighted how powerful the underlying algorithms
+              can be even with incomplete data.
+            </p>
+
+            <p>
+              The second object I scanned was the Wines sign. Similar to the first scan, I found it interesting how the software handled
+              areas that were not fully captured. In particular, the tops of the posts on either end of the sign were extrapolated in a way
+              that still looked realistic and consistent with the rest of the model. This again demonstrated the software’s ability to make
+              logical assumptions based on the surrounding geometry. Seeing this repeated across different objects increased my confidence in
+              how well 3D scanning can handle missing or hard-to-reach perspectives.
+            </p>
+
+            <p>
+              The final object I scanned was a playground, which I expected to be the most challenging due to its complex structure. Because it
+              is not a solid object and contains many holes, bars, and pass-through areas, I assumed the software would struggle to reconstruct it
+              accurately. However, it performed surprisingly well and was able to capture a high level of geometric detail. One drawback I noticed
+              across the scans was the amount of noise present in the final models. The surfaces appeared rough, which makes sense given the amount of
+              information being processed in each image. This roughness would make it difficult to export the models into formats like STL without
+              additional cleanup.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">
+            <h2 style="margin:0;">Future use</h2>
+            <small>Where this shines</small>
+          </div>
+          <div class="card-inner">
+            <p>
+              This technology is extremely impressive and exciting to see in practice. When I first learned about 3D scanning in class,
+              I initially thought about its potential use for modeling in the context of 3D printing, since that is something I am interested in.
+              However, it quickly became clear that scanning objects using a phone-based photogrammetry approach would not produce models suitable
+              for 3D printing. This makes sense, as models intended for manufacturing need to be highly precise and free of discontinuities.
+              While photogrammetry creates visually impressive models with a high level of detail, they often lack the precision and smooth continuity
+              required for physical production.
+            </p>
+            <p>
+              That said, this technology would be very effective for bringing real-world objects into digital environments such as video games or
+              3D rendering engines like Blender. Keeping the models in a purely digital space avoids many of the limitations associated with physical
+              fabrication and allows the technology to be used in a way that better aligns with its strengths.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hr"></div>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="section-title">
+        <h2 style="margin:0;">Creal Park</h2>
+        <small>Scaniverse embed</small>
+      </div>
+      <div class="embed">
+        <iframe allowfullscreen src="https://scaniverse.com/scan/g52274gznv3ecndn?embed=1"></iframe>
+      </div>
+      <div class="caption">Embedded 3D model from Scaniverse.</div>
+    </section>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="section-title">
+        <h2 style="margin:0;">Wines Elementary Entrance Sign</h2>
+        <small>Scaniverse embed</small>
+      </div>
+      <div class="embed">
+        <iframe allowfullscreen src="https://scaniverse.com/scan/u5qi2trx4edtfcon?embed=1"></iframe>
+      </div>
+      <div class="caption">Embedded 3D model from Scaniverse.</div>
+    </section>
+
+    <section class="card" style="margin-top: 18px;">
+      <div class="section-title">
+        <h2 style="margin:0;">Robotics Trailer</h2>
+        <small>Scaniverse embed</small>
+      </div>
+      <div class="embed">
+        <iframe allowfullscreen src="https://scaniverse.com/scan/7crwnzb62rf3hrri?embed=1"></iframe>
+      </div>
+      <div class="caption">Embedded 3D model from Scaniverse.</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="hr"></div>
+    <div>© Shaman Garcia — 3D Scanning Exercise</div>
+  </footer>
+
+</body>
+</html>
