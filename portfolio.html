@@ -11,46 +11,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <style>
-      /* Project tile grid */
+      /* Large, single-card project galleries */
+      .project-gallery {
+        position: relative;
+        padding: 0 4.5rem;
+      }
+
       .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 1.75rem;
+        position: relative;
+        min-height: 520px;
       }
 
       .project-card {
-        display: block;
-        background: #white;
-        border-radius: 8px;
-        padding: 1.25rem 1.5rem;
+        display: none;
+        position: relative;
+        min-height: 520px;
+        border-radius: 12px;
+        overflow: hidden;
         text-decoration: none;
-        color: inherit;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-        transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        color: #fff;
+        background-color: #2f3d3a;
+        background-position: center;
+        background-size: cover;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .project-card.is-active {
+        display: block;
       }
 
       .project-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-        background: #white;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.38);
+        color: #fff !important;
+      }
+
+      .project-card-content {
+        position: absolute;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 1.5rem;
+        max-width: 760px;
+        padding: 1.35rem 1.5rem;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.68);
+        color: #fff;
       }
 
       .project-card h3 {
         margin-bottom: 0.35rem;
+        color: #fff;
       }
 
       .project-card p {
-        font-size: 0.9rem;
-        margin-bottom: 0.35rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.45rem;
       }
 
       .project-meta {
         font-size: 0.8rem;
-        opacity: 0.8;
+        opacity: 0.9;
       }
 
       .tag-list {
-        margin-top: 0.35rem;
+        margin-top: 0.45rem;
         display: flex;
         flex-wrap: wrap;
         gap: 0.3rem;
@@ -60,13 +85,82 @@
         font-size: 0.75rem;
         padding: 0.15rem 0.5rem;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        opacity: 0.85;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+      }
+
+      .gallery-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.68);
+        color: #fff;
+        cursor: pointer;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        transform: translateY(-50%);
+      }
+
+      .gallery-arrow:hover {
+        background: #2ebaae;
+      }
+
+      .gallery-arrow.prev {
+        left: 0.5rem;
+      }
+
+      .gallery-arrow.next {
+        right: 0.5rem;
+      }
+
+      .gallery-arrow:disabled {
+        cursor: default;
+        opacity: 0.35;
+      }
+
+      .gallery-status {
+        margin: 0.75rem 0 0;
+        text-align: center;
+        font-size: 0.85rem;
+      }
+
+      .capstone-placeholder {
+        cursor: default;
       }
 
       @media (max-width: 736px) {
+        .project-gallery {
+          padding: 0 0 4rem;
+        }
+
+        .projects-grid,
         .project-card {
-          padding: 1rem 1.1rem;
+          min-height: 440px;
+        }
+
+        .project-card-content {
+          left: 0.75rem;
+          right: 0.75rem;
+          bottom: 0.75rem;
+          padding: 1rem;
+        }
+
+        .gallery-arrow {
+          top: auto;
+          bottom: 0;
+          transform: none;
+        }
+
+        .gallery-arrow.prev {
+          left: calc(50% - 3.75rem);
+        }
+
+        .gallery-arrow.next {
+          right: calc(50% - 3.75rem);
         }
       }
     
@@ -124,7 +218,6 @@
             <li><a href="resume.html">Resume</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="bio.html">Bio</a></li>
-            <li><a href="fun.html">Fun</a></li>
           </ul>
         </nav>
         <nav class="main">
@@ -148,6 +241,12 @@
               </a>
             </li>
             <li>
+              <a href="#capstone-practicum">
+                <h3>Master's Capstone Practicum</h3>
+                <p>Capstone practicum work</p>
+              </a>
+            </li>
+            <li>
               <a href="#personal-projects">
                 <h3>Personal Projects</h3>
                 <p>Independent and side work</p>
@@ -167,6 +266,7 @@
             <select id="filter-type">
               <option value="__all__">All projects</option>
               <option value="university">University projects</option>
+              <option value="capstone">Master's capstone practicum</option>
               <option value="personal">Personal projects</option>
             </select>
           </div>
@@ -195,10 +295,12 @@
           </header>
 
           <section>
-            <div class="projects-grid">
+            <div class="project-gallery">
+              <button class="gallery-arrow prev" type="button" aria-label="Previous university project">&#10094;</button>
+              <div class="projects-grid">
 
               <!-- EAS 447 – Forest Management Plan -->
-              <a href="portfolio/447final.pdf" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/447final.pdf" class="project-card" data-image="tilephotos/forrestanalysis.png" target="_blank" rel="noopener">
                 <h3>Forest Management Plan – Camp Al-Gon-Quian</h3>
                 <p>
                   Comprehensive management plan for 77 acres of YMCA forest at Burt Lake,
@@ -215,7 +317,7 @@
               </a>
 
               <!-- EAS 516 – Biomass analysis report -->
-              <a href="portfolio/516final.pdf" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/516final.pdf" class="project-card" data-image="tilephotos/biomassanalysis.png" target="_blank" rel="noopener">
                 <h3>Biomass Analysis Using Family-Level Tree Identification</h3>
                 <p>
                   Estimated above-ground biomass in Saginaw Forest by combining PyCrown canopy
@@ -232,7 +334,7 @@
               </a>
 
               <!-- EAS 516 – Biomass analysis presentation -->
-              <a href="portfolio/516finalpres.pdf" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/516finalpres.pdf" class="project-card" data-image="tilephotos/biomasspres.png" target="_blank" rel="noopener">
                 <h3>Biomass Analysis of Saginaw Forest – Presentation</h3>
                 <p>
                   Slide deck summarizing canopy detection, supervised image classification,
@@ -248,7 +350,7 @@
               </a>
 
               <!-- EAS 549 – Tree growth & climate modeling -->
-              <a href="portfolio/549final.pdf" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/549final.pdf" class="project-card" data-image="tilephotos/bayesiangrowth.png" target="_blank" rel="noopener">
                 <h3>Predicting Growth in Michigan Tree Species</h3>
                 <p>
                   Bayesian hierarchical model linking DBH, temperature, and precipitation to
@@ -266,7 +368,7 @@
               </a>
 
               <!-- EAS 549 – Tree growth & climate modeling -->
-              <a href="portfolio/549finalpres.pdf" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/549finalpres.pdf" class="project-card" data-image="tilephotos/bayesianpres.png" target="_blank" rel="noopener">
                 <h3>Predicting Growth in Michigan Tree Species</h3>
                 <p>
                   Slide deck summarizing the Bayesian hierarchical model linking DBH, temperature, and precipitation to
@@ -285,7 +387,7 @@
 
               <!-- LearnGala website tile -->
               <a href="https://www.learngala.com/cases/9c315ed6-9406-4d44-995c-748e81540112"
-                 class="project-card" target="_blank" rel="noopener">
+                 class="project-card" data-image="tilephotos/learngala.png" target="_blank" rel="noopener">
                 <h3>Interactive Forest Management Case Study (LearnGala)</h3>
                 <p>
                   Web-based teaching case hosted on LearnGala that translates my graduate forest
@@ -302,7 +404,7 @@
               </a>
               
               <!-- EAS 648 – Lab 1 tmap Exploration -->
-              <a href="portfolio/personalmap.html" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/personalmap.html" class="project-card" data-image="tilephotos/bordering.png" target="_blank" rel="noopener">
                 <h3>Bordering Countries Map</h3>
                 <p>
                   HTML page showing the steps I took to collect data, clean it, and create a map based
@@ -318,7 +420,7 @@
               </a>
               
                <!-- EAS 648 – Lab 2 LiDar Data Exploration -->
-              <a href="portfolio/lab2.html" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/lab2.html" class="project-card" data-image="tilephotos/burtmodel.png" target="_blank" rel="noopener">
                 <h3>Burt Lake Lidar Data (Camp AGQ)</h3>
                 <p>
                   HTML page showing the steps in order to create 3D maps of the Burt Lake area. Maps include a 
@@ -334,7 +436,7 @@
               </a>
               
               <!-- EAS 648 – Lab 3 Time Series Data -->
-              <a href="portfolio/lab3.html" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/lab3.html" class="project-card" data-image="tilephotos/timecube.png" target="_blank" rel="noopener">
                 <h3>Tracking Collar Time-Series Data</h3>
                 <p>
                   HTML page showing the steps in order to create a 3D represenation of GPS data taken from my Cat's tracking collar over time.
@@ -350,7 +452,7 @@
               </a>
               
               <!-- EAS 648 – Lab 4 Sentiment Analysis -->
-              <a href="portfolio/4.html" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/4.html" class="project-card" data-image="tilephotos/songlyric.png" target="_blank" rel="noopener">
                 <h3>Song Lyrics and Tik Tok Comment Analysis</h3>
                 <p>
                   HTML page showing the workflow in order to analyze the sentiment (positive/negative) of song lyrics and Tik Tok comments. 
@@ -365,7 +467,7 @@
               </a>
               
               <!-- EAS 648 – Lab 5 Variable Distribution and Bayesian Analysis -->
-              <a href="portfolio/lab5.html" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/lab5.html" class="project-card" data-image="tilephotos/saltlake.png" target="_blank" rel="noopener">
                 <h3>Analysing Urban Development Data within Salt Lake City, Utah</h3>
                 <p>
                   HTML page showing the workflow exploring the variable space related to different urbanization and demographic metrics 
@@ -381,7 +483,7 @@
               </a>
               
               <!-- EAS 548 – Final Project: Web Scraping -->
-              <a href="portfolio/548final.pdf" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/548final.pdf" class="project-card" data-image="tilephotos/elcamino.png" target="_blank" rel="noopener">
                 <h3>Facebook Marketplace El Camino Exploration </h3>
                 <p>
                   Write-up and infographic exploring Chevrolet El Camino listings on Facebook Marketplace and attribute data.  
@@ -397,7 +499,7 @@
               </a>
               
               <!-- EAS 648 – Final Project: NBS South Carolina Shiny App -->
-              <a href="https://1v00iz-shaman-garcia.shinyapps.io/scnbs_shiny" class="project-card" target="_blank" rel="noopener">
+              <a href="https://1v00iz-shaman-garcia.shinyapps.io/scnbs_shiny" class="project-card" data-image="tilephotos/NBSsouthcarolina.png" target="_blank" rel="noopener">
               <h3>Nature-Based Solutions in South Carolina Shiny App </h3>
                 <p>
                   Shiny App webpage showing a map of South Carolina and the past, present, and future 
@@ -415,7 +517,7 @@
               </a>
               
                   <!-- EAS 608 – Business Venture Exploration -->
-              <a href="https://skillexapp.com/" class="project-card" target="_blank" rel="noopener">
+              <a href="https://skillexapp.com/" class="project-card" data-image="tilephotos/skillex.png" target="_blank" rel="noopener">
               <h3>Skill Exchange App for Michigan Campus </h3>
                 <p>
                   Website demo created for the SkillEx business veture as a part of the final project. 
@@ -430,7 +532,7 @@
               </a>
               
                <!-- EAS 652 – 3D Photogrammetry -->
-              <a href="portfolio/652HW1.html" class="project-card" target="_blank" rel="noopener">
+              <a href="portfolio/652HW1.html" class="project-card" data-image="tilephotos/photogram.png" target="_blank" rel="noopener">
               <h3>Scaniverse Photogrammetry App </h3>
                 <p>
                   Create and add 3D models to a Webmap using Scaniverse photogrammetry 
@@ -443,6 +545,55 @@
                 </div>
               </a>
 
+              </div>
+              <button class="gallery-arrow next" type="button" aria-label="Next university project">&#10095;</button>
+              <p class="gallery-status" aria-live="polite"></p>
+            </div>
+          </section>
+        </article>
+
+        <!-- Master's Capstone Practicum -->
+        <article class="post" id="capstone-practicum" data-project-type="capstone">
+          <header>
+            <div class="title">
+              <h2>Master's Capstone Practicum</h2>
+            </div>
+          </header>
+
+          <section>
+            <div class="project-gallery">
+              <button class="gallery-arrow prev" type="button" aria-label="Previous capstone project">&#10094;</button>
+              <div class="projects-grid">
+                <!-- Field Guide-->
+                <a href="portfolio/fieldguide.pdf" class="project-card" data-image="tilephotos/fieldguidephoto.png" aria-disabled="true">
+                  <h3>Camp AGQ Field Guide and Ecological Exploration</h3>
+                  <p>Produced on behalf of The Ann Arbor YMCA - Camp AGQ.</p>
+                  <div class="tag-list">
+                    <span class="tag">Capstone Practicum</span>
+                  </div>
+                </a>
+                
+                <!-- Report -->
+                <a href="portfolio/Garcia_Shaman_Practicum.pdf" class="project-card" data-image="tilephotos/fgreport.png" aria-disabled="true">
+                  <h3>Field Guide Practicum Report</h3>
+                  <p>Details the motivation, methods, and results of the practicum project</p>
+                  <div class="tag-list">
+                    <span class="tag">Capstone Practicum</span>
+                  </div>
+                </a>
+                
+                <!-- video -->
+                <a href="https://drive.google.com/file/d/1Ka5hOabASA7Io09KZuvqjhVZZUQATeNq/view?usp=sharing" class="project-card" data-image="tilephotos/cappres.png" aria-disabled="true">
+                  <h3>Field Guide Video Presentation</h3>
+                  <p>Recorded presentation of the Camp AGQ Field Guide (Click "Open Document Directly")</p>
+                  <div class="tag-list">
+                    <span class="tag">Capstone Practicum</span>
+                  </div>
+                </a>
+                
+              </div>
+              <button class="gallery-arrow next" type="button" aria-label="Next capstone project">&#10095;</button>
+              <p class="gallery-status" aria-live="polite"></p>
             </div>
           </section>
         </article>
@@ -457,10 +608,12 @@
           </header>
 
           <section>
-            <div class="projects-grid">
+            <div class="project-gallery">
+              <button class="gallery-arrow prev" type="button" aria-label="Previous personal project">&#10094;</button>
+              <div class="projects-grid">
               
               <!-- Example personal project tile 4 -->
-              <a href="https://shamangarcia.com/index.html" class="project-card">
+              <a href="https://shamangarcia.com/index.html" class="project-card" data-image="tilephotos/burn.jpeg">
                 <h3>Personal Portfolio Website</h3>
                 <p>
                   Built and customized this portfolio site to showcase academic,
@@ -476,6 +629,9 @@
                 </div>
               </a>
 
+              </div>
+              <button class="gallery-arrow next" type="button" aria-label="Next personal project">&#10095;</button>
+              <p class="gallery-status" aria-live="polite"></p>
             </div>
           </section>
         </article>
@@ -505,7 +661,7 @@
       // Set current year in footer
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Portfolio filtering (Project Type + Course/Class + Tag)
+      // Portfolio galleries and filtering (Project Type + Course/Class + Tag)
       (function () {
         const typeSelect = document.getElementById('filter-type');
         const courseSelect = document.getElementById('filter-course');
@@ -514,6 +670,7 @@
 
         const cards = Array.from(document.querySelectorAll('.project-card'));
         const sections = Array.from(document.querySelectorAll('article[data-project-type]'));
+        const galleries = Array.from(document.querySelectorAll('.project-gallery'));
 
         function normalize(s) {
           return (s || '').toString().trim().toLowerCase();
@@ -524,6 +681,14 @@
         const allTags = new Map();    // key -> display
 
         cards.forEach((card) => {
+          const content = document.createElement('div');
+          content.className = 'project-card-content';
+          while (card.firstChild) content.appendChild(card.firstChild);
+          card.appendChild(content);
+          if (card.dataset.image) {
+            card.style.backgroundImage = `url("${card.dataset.image}")`;
+          }
+
           // Tags
           const tagEls = Array.from(card.querySelectorAll('.tag'));
           const tags = tagEls.map((t) => t.textContent.trim()).filter(Boolean);
@@ -548,6 +713,19 @@
           card.dataset.type = article ? article.getAttribute('data-project-type') : '';
         });
 
+        galleries.forEach((gallery) => {
+          gallery.dataset.index = '0';
+          const previousButton = gallery.querySelector('.gallery-arrow.prev');
+          const nextButton = gallery.querySelector('.gallery-arrow.next');
+
+          previousButton.addEventListener('click', () => changeSlide(gallery, -1));
+          nextButton.addEventListener('click', () => changeSlide(gallery, 1));
+        });
+
+        document.querySelectorAll('.capstone-placeholder').forEach((card) => {
+          card.addEventListener('click', (event) => event.preventDefault());
+        });
+
         function fillSelect(selectEl, itemsMap, allLabel) {
           const first = selectEl.querySelector('option[value="__all__"]');
           selectEl.innerHTML = '';
@@ -570,6 +748,39 @@
         fillSelect(courseSelect, allCourses, 'All courses');
         fillSelect(tagSelect, allTags, 'All tags');
 
+        function visibleCardsForGallery(gallery) {
+          return Array.from(gallery.querySelectorAll('.project-card')).filter((card) => card.dataset.matchesFilter === 'true');
+        }
+
+        function showSlide(gallery, requestedIndex) {
+          const galleryCards = Array.from(gallery.querySelectorAll('.project-card'));
+          const visibleCards = visibleCardsForGallery(gallery);
+          const status = gallery.querySelector('.gallery-status');
+          const previousButton = gallery.querySelector('.gallery-arrow.prev');
+          const nextButton = gallery.querySelector('.gallery-arrow.next');
+
+          galleryCards.forEach((card) => card.classList.remove('is-active'));
+
+          if (!visibleCards.length) {
+            gallery.dataset.index = '0';
+            status.textContent = '';
+            previousButton.disabled = true;
+            nextButton.disabled = true;
+            return;
+          }
+
+          const index = ((requestedIndex % visibleCards.length) + visibleCards.length) % visibleCards.length;
+          gallery.dataset.index = String(index);
+          visibleCards[index].classList.add('is-active');
+          status.textContent = `${index + 1} of ${visibleCards.length}`;
+          previousButton.disabled = visibleCards.length < 2;
+          nextButton.disabled = visibleCards.length < 2;
+        }
+
+        function changeSlide(gallery, direction) {
+          showSlide(gallery, Number(gallery.dataset.index || 0) + direction);
+        }
+
         function applyFilters() {
           const selectedType = typeSelect.value;
           const selectedCourse = courseSelect.value;
@@ -581,14 +792,15 @@
             const tags = (card.dataset.tags || '').split(',').filter(Boolean);
             const tagOk = (selectedTag === '__all__') || tags.includes(selectedTag);
 
-            card.style.display = (typeOk && courseOk && tagOk) ? '' : 'none';
+            card.dataset.matchesFilter = String(typeOk && courseOk && tagOk);
           });
 
-          // Hide/show whole sections if everything inside is filtered out
           sections.forEach((section) => {
-            const visibleCard = section.querySelector('.project-card:not([style*="display: none"])');
-            section.style.display = visibleCard ? '' : 'none';
+            const matchingCard = section.querySelector('.project-card[data-matches-filter="true"]');
+            section.style.display = matchingCard ? '' : 'none';
           });
+
+          galleries.forEach((gallery) => showSlide(gallery, 0));
         }
 
         typeSelect.addEventListener('change', applyFilters);

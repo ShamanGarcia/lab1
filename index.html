@@ -13,22 +13,64 @@
         padding: 3rem 1.5rem;
       }
 
+      #wrapper {
+        position: relative;
+        z-index: 1;
+      }
+
+      .background-slideshow,
+      .background-slide {
+        position: fixed;
+        inset: 0;
+      }
+
+      .background-slideshow {
+        z-index: 0;
+        overflow: hidden;
+        background: #263b35;
+      }
+
+      .background-slide {
+        background-position: center;
+        background-size: cover;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+
+      .background-slide.is-active {
+        opacity: 1;
+      }
+
+      .background-slideshow::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+      }
+
       .home-container {
         max-width: 900px;
         margin: 0 auto;
         text-align: center;
       }
 
+      .home-hero {
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+      }
+
       .home-hero h2 {
         font-size: 2.4rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0rem;
       }
 
       .home-hero p {
         font-size: 1.05rem;
         opacity: 0.9;
         max-width: 640px;
-        margin: 0 auto 2.5rem auto;
+        margin: 0 auto 0rem auto;
       }
 
       .home-grid {
@@ -41,12 +83,16 @@
       .home-card {
         display: block;
         text-decoration: none;
-        background: #white;
         padding: 1.75rem 1.5rem;
         border-radius: 0.75rem;
+        background: rgba(255, 255, 255, 0.9);
         box-shadow: 0 10px 20px rgba(0,0,0,0.35);
-        transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
         text-align: left;
+      }
+
+      .home-card-content {
+        color: inherit;
       }
 
       .home-card h3 {
@@ -62,7 +108,7 @@
       .home-card:hover {
         transform: translateY(-3px);
         box-shadow: 0 14px 28px rgba(0,0,0,0.45);
-        background: #white;
+        background: #fff;
       }
 
 
@@ -81,6 +127,11 @@
   </head>
 
   <body class="is-preload">
+    <div class="background-slideshow" aria-hidden="true">
+      <div class="background-slide is-active"></div>
+      <div class="background-slide"></div>
+    </div>
+
     <!-- Wrapper -->
     <div id="wrapper">
 
@@ -93,7 +144,6 @@
             <li><a href="resume.html">Resume</a></li>
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="bio.html">Bio</a></li>
-            <li><a href="fun.html">Fun</a></li>
           </ul>
         </nav>
       </header>
@@ -109,29 +159,30 @@
             <h2>Hi, my name is Shaman.</h2>
             <p>
               I’m an environmental science student who loves forests, geospatial data, and teaching.
-              This site collects my resume, project portfolio, a short bio, and some fun geography games.
+              This site collects my resume, project portfolio, and a short bio.
             </p>
           </section>
 
           <section class="home-grid">
             <a class="home-card" href="resume.html">
-              <h3>Resume</h3>
-              <p>Education and work experience in environmental science, teaching, and leadership.</p>
+              <div class="home-card-content">
+                <h3>Resume</h3>
+                <p>Education and work experience in environmental science, teaching, and leadership.</p>
+              </div>
             </a>
 
             <a class="home-card" href="portfolio.html">
-              <h3>Portfolio</h3>
-              <p>Class projects, case studies, and personal work in ecology, modeling, and mapping.</p>
+              <div class="home-card-content">
+                <h3>Portfolio</h3>
+                <p>Class projects, case studies, and personal work in ecology, modeling, and mapping.</p>
+              </div>
             </a>
 
             <a class="home-card" href="bio.html">
-              <h3>Bio</h3>
-              <p>A short story about who I am, what I care about, and what I enjoy outside of class.</p>
-            </a>
-
-            <a class="home-card" href="fun.html">
-              <h3>Fun</h3>
-              <p>Geography games, timers, and a place to play with maps and countries.</p>
+              <div class="home-card-content">
+                <h3>Bio</h3>
+                <p>A short story about who I am, what I care about, and what I enjoy outside of class.</p>
+              </div>
             </a>
           </section>
         </div>
@@ -149,6 +200,44 @@
     <!-- Small script to make dropdowns work on click -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
+        var backgroundPhotos = [];
+        var slides = document.querySelectorAll('.background-slide');
+        var activeSlide = 0;
+        var photoIndex = 0;
+
+        function startBackgroundSlideshow() {
+          if (!backgroundPhotos.length) return;
+
+          slides[0].style.backgroundImage = 'url("' + backgroundPhotos[0] + '")';
+          slides[1].style.backgroundImage = 'url("' + backgroundPhotos[backgroundPhotos.length > 1 ? 1 : 0] + '")';
+
+          if (backgroundPhotos.length < 2) return;
+
+          window.setInterval(function () {
+            var nextSlide = activeSlide === 0 ? 1 : 0;
+            photoIndex = (photoIndex + 1) % backgroundPhotos.length;
+            slides[nextSlide].style.backgroundImage = 'url("' + backgroundPhotos[photoIndex] + '")';
+            slides[nextSlide].classList.add('is-active');
+            slides[activeSlide].classList.remove('is-active');
+            activeSlide = nextSlide;
+          }, 3000);
+        }
+
+        function findBackgroundPhoto(number) {
+          var photoUrl = 'backgroundphotos/' + number + '.jpeg';
+          var image = new Image();
+
+          image.onload = function () {
+            backgroundPhotos.push(photoUrl);
+            findBackgroundPhoto(number + 1);
+          };
+
+          image.onerror = startBackgroundSlideshow;
+          image.src = photoUrl;
+        }
+
+        findBackgroundPhoto(1);
+
         var dropdownParents = document.querySelectorAll('#header .has-dropdown > a');
 
         dropdownParents.forEach(function (trigger) {
