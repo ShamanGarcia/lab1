@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Visualizations</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #5f6f82;
+      --border: #d9e2ec;
+      --accent: #2457c5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 18px;
+    }
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+    }
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 780px;
+    }
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px 56px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      margin: 0 0 30px;
+      box-shadow: 0 12px 30px rgba(31, 41, 51, 0.08);
+    }
+    .section-number {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    h2 {
+      margin: 0 0 20px;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.25;
+    }
+    .media-stack {
+      display: grid;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .copy {
+      max-width: 900px;
+    }
+    .copy p {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+    .copy p:last-child { margin-bottom: 0; }
+    @media (max-width: 700px) {
+      header { padding-top: 34px; }
+      .card { padding: 18px; border-radius: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Student Performance Visualizations</h1>
+    <p class="intro">A clean summary and exploration of class performance across assignment categories, with each visualization followed by a consistent explanation.</p>
+  </header>
+  <main>
+    <section class="card" id="section-1">
+  <div class="section-number">Visualization 1</div>
+  <h2>All Students: Assignment Category Scores and Final Grade</h2>
+  <div class="media-stack">
+    <img src="images/rawscore.png" alt="All students overview still image" loading="lazy">
+<img src="images/rawscore.gif" alt="All students animated overview" loading="lazy">
+  </div>
+  <div class="copy">
+    <p>Each line represents an individual student and their average score for an assignment category. The line color represents the student’s final course grade, with purple indicating grades closer to 100 and orange indicating grades closer to 70. The bold black bar shows the class average for each assignment category.</p>
+<p>This visualization provides insight into overall class performance and highlights which assignment categories were relatively more or less difficult.</p>
+  </div>
+</section>
+<section class="card" id="section-2">
+  <div class="section-number">Visualization 2</div>
+  <h2>Top 5 Students by Final Grade</h2>
+  <div class="media-stack">
+    <img src="images/5final.gif" alt="Top five students by final grade animation" loading="lazy">
+  </div>
+  <div class="copy">
+    <p>This graph uses the same format as the previous visualization, but focuses only on the top five students by final grade. Each line represents one student and their score across the assignment categories. The line color represents final course grade, with red indicating the highest grades and blue indicating the lower grades within this top-performing group.</p>
+<p>This visualization shows the score distribution and consistency among the five highest-scoring students in the class.</p>
+  </div>
+</section>
+<section class="card" id="section-3">
+  <div class="section-number">Visualization 3</div>
+  <h2>Top 5 Students: Rank by Assignment Category</h2>
+  <div class="media-stack">
+    <img src="images/5rank.gif" alt="Top five students rank animation" loading="lazy">
+  </div>
+  <div class="copy">
+    <p>Each line represents an individual student and their rank in the class for a given assignment category. This view shows how the order of students within the top five changes across different types of assignments.</p>
+<p>This visualization helps show how consistent the top five students were and how their performance compared with their peers across assignment categories.</p>
+  </div>
+</section>
+<section class="card" id="section-4">
+  <div class="section-number">Visualization 4</div>
+  <h2>Top 10 Students: Rank by Assignment Category</h2>
+  <div class="media-stack">
+    <img src="images/10rank.gif" alt="Top ten students rank animation" loading="lazy">
+  </div>
+  <div class="copy">
+    <p>This graph expands the top-five rank view to include students who ranked within the top ten for each assignment category.</p>
+<p>Expanding the view to the top ten shows how large the high-performing student pool is. If the same ten students ranked consistently across every assignment category, only ten lines would appear. Instead, more students appear, showing that students who perform very well in one assignment category may not perform as strongly in another. This highlights the dynamic nature of student strengths across the course.</p>
+  </div>
+</section>
+  </main>
+</body>
+</html>
