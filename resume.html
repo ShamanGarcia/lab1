@@ -5,6 +5,50 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+      .education-item,
+      .experience-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .experience-logo {
+        flex: 0 0 84px;
+        width: 84px;
+        min-height: 84px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.6rem;
+        border: 1px solid rgba(160, 160, 160, 0.3);
+        background: #fff;
+      }
+
+      .experience-logo img {
+        display: block;
+        max-width: 100%;
+        max-height: 68px;
+        object-fit: contain;
+      }
+
+      .education-content,
+      .experience-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      @media screen and (max-width: 736px) {
+        .education-item,
+        .experience-item {
+          display: block;
+        }
+
+        .experience-logo {
+          margin-bottom: 1rem;
+        }
+      }
+    </style>
   </head>
   <body class="single is-preload">
     <div id="wrapper">
@@ -38,22 +82,32 @@
         
           <div class="education">
             <section class="education-item">
-              <h3>Master of Science — Environmental Science (SEAS)</h3>
-              <ul>
-                <li><strong>Institution:</strong> University of Michigan, Ann Arbor, MI</li>
-                <li><strong>Graduated:</strong> May 2026</li>
-                <li><strong>Specialization:</strong> Ecosystem Science and Managment, Geospatial Data Science</li>
-              </ul>
+              <div class="experience-logo">
+                <img src="logos/seas.png" alt="University of Michigan SEAS logo" />
+              </div>
+              <div class="education-content">
+                <h3>Master of Science — Environmental Science (SEAS)</h3>
+                <ul>
+                  <li><strong>Institution:</strong> University of Michigan, Ann Arbor, MI</li>
+                  <li><strong>Graduated:</strong> May 2026</li>
+                  <li><strong>Specialization:</strong> Ecosystem Science and Managment, Geospatial Data Science</li>
+                </ul>
+              </div>
             </section>
         
             <hr />
         
             <section class="education-item">
-              <h3>Bachelor of Science — Environmental Science, Minor in Computer Science</h3>
-              <ul>
-                <li><strong>Institution:</strong> University of Michigan, Ann Arbor, MI</li>
-                <li><strong>Graduated:</strong> May 2024</li>
-              </ul>
+              <div class="experience-logo">
+                <img src="logos/LSA.png" alt="University of Michigan LSA logo" />
+              </div>
+              <div class="education-content">
+                <h3>Bachelor of Science — Environmental Science, Minor in Computer Science</h3>
+                <ul>
+                  <li><strong>Institution:</strong> University of Michigan, Ann Arbor, MI</li>
+                  <li><strong>Graduated:</strong> May 2024</li>
+                </ul>
+              </div>
             </section>
           </div>
         </article>
@@ -65,75 +119,111 @@
               <p>Teaching, Leadership, and Environmental Education</p>
             </div>
           </header>
+          
+          <section class="experience-item">
+            <div class="experience-logo">
+              <img src="logos/ymca.png" alt="Ann Arbor YMCA logo" />
+            </div>
+            <div class="experience-content">
+              <h3>Ann Arbor YMCA Camp Algonquian</h3>
+              <p><em>Ann Arbor, MI — Summers 2018 – 2026</em></p>
+              <ul>
+                <li><strong>Masters Capstone Collaborator (2025-2026):</strong> Created the Camp AGQ Field Guide, a tool for educating campers, staff, and alumni, on the nature and ecology on the property.</li>
+                <li><strong>Leaders in Training Program Director (2022):</strong> Led leadership development for 30–40 teenagers per session, enhancing collaboration and communication.</li>
+                <li><strong>Store Manager (2021):</strong> Managed camp store operations including sales and inventory control.</li>
+                <li><strong>Full Summer Staff (2020), Junior Staff (2019), Counselor in Training (2018):</strong> Supported youth programs promoting engagement and personal growth.</li>
+                <li>Received Lifeguard and CPR/First Aid Certifications each summer.</li>
+              </ul>
+            </div>
+          </section>
+          
            <section class="experience-item">
-            <h3>University of Michigan PiTE | GSI – Woody Plants</h3>
-            <p><em>Ann Arbor, MI — September 2025 – December 2026</em></p>
-            <ul>
-              <li>Led weekly field labs for undergraduate and graduate level students, teaching identification of Michigan woody plant species.</li>
-              <li>Managed course logistics, including organizing materials, administering and grading quizzes, assignments, and exams, and providing student support.</li>
-              <li>Maintained student safety and engagement during field-based instruction while facilitating hands-on ecological learning experiences. </li>
-            </ul>
+            <div class="experience-logo">
+              <img src="logos/SEAS.png" alt="University of Michigan LSA logo" />
+            </div>
+            <div class="experience-content">
+              <h3>University of Michigan PiTE | GSI – Woody Plants</h3>
+              <p><em>Ann Arbor, MI — September 2025 – December 2026</em></p>
+              <ul>
+                <li>Led weekly field labs for undergraduate and graduate level students, teaching identification of Michigan woody plant species.</li>
+                <li>Managed course logistics, including organizing materials, administering and grading quizzes, assignments, and exams, and providing student support.</li>
+                <li>Maintained student safety and engagement during field-based instruction while facilitating hands-on ecological learning experiences. </li>
+              </ul>
+            </div>
           </section>
           
           <section class="experience-item">
-            <h3>University of Michigan PiTE | GSI – Restoration Ecology</h3>
-            <p><em>Ann Arbor, MI — September 2024 – December 2024</em></p>
-            <ul>
-              <li>Facilitated weekly outdoor classes involving restoration practitioners.</li>
-              <li>Managed course logistics, graded assignments, and maintained the class Canvas page.</li>
-            </ul>
+            <div class="experience-logo">
+              <img src="logos/SEAS.png" alt="University of Michigan LSA logo" />
+            </div>
+            <div class="experience-content">
+              <h3>University of Michigan PiTE | GSI – Restoration Ecology</h3>
+              <p><em>Ann Arbor, MI — September 2024 – December 2024</em></p>
+              <ul>
+                <li>Facilitated weekly outdoor classes involving restoration practitioners.</li>
+                <li>Managed course logistics, graded assignments, and maintained the class Canvas page.</li>
+              </ul>
+            </div>
           </section>
 
           <section class="experience-item">
-            <h3>University of Michigan PiTE | Teaching Assistant – Woody Plants</h3>
-            <p><em>Ann Arbor, MI — September 2024 – December 2024</em></p>
-            <ul>
-              <li>Organized the Woody Plants wet lab by identifying and sorting weekly field samples.</li>
-              <li>Responded to student questions and provided academic support in plant identification.</li>
-            </ul>
+            <div class="experience-logo">
+              <img src="logos/SEAS.png" alt="University of Michigan LSA logo" />
+            </div>
+            <div class="experience-content">
+              <h3>University of Michigan SEAS | Teaching Assistant – Woody Plants</h3>
+              <p><em>Ann Arbor, MI — September 2024 – December 2024</em></p>
+              <ul>
+                <li>Organized the Woody Plants wet lab by identifying and sorting weekly field samples.</li>
+                <li>Responded to student questions and provided academic support in plant identification.</li>
+              </ul>
+            </div>
           </section>
 
           <section class="experience-item">
-            <h3>Greenhills School | Robotics Instructor</h3>
-            <p><em>Ann Arbor, MI — January 2023 – Present</em></p>
-            <ul>
-              <li>Guided high school students in designing and programming robots for the FIRST Robotics Competition.</li>
-              <li>Promoted teamwork and communication, enhancing student engineering and social skills.</li>
-              <li>
-                <a href="https://www.woodieflowers.org/" target="_blank" rel="noopener noreferrer">
-                  Woody Flowers Mentor Award Nominee (Click for more information)
-                </a>
-              </li>
-            </ul>
+            <div class="experience-logo">
+              <img src="logos/robot.webp" alt="Robotics logo" />
+            </div>
+            <div class="experience-content">
+              <h3>Greenhills School | Robotics Instructor</h3>
+              <p><em>Ann Arbor, MI — January 2023 – Present</em></p>
+              <ul>
+                <li>Guided high school students in designing and programming robots for the FIRST Robotics Competition.</li>
+                <li>Promoted teamwork and communication, enhancing student engineering and social skills.</li>
+                <li>
+                  <a href="https://www.woodieflowers.org/" target="_blank" rel="noopener noreferrer">
+                    Woody Flowers Mentor Award Nominee (Click for more information)
+                  </a>
+                </li>
+              </ul>
+            </div>
           </section>
 
           <section class="experience-item">
-            <h3>Freeman Environmental Educational Center | Volunteer Naturalist</h3>
-            <p><em>Ann Arbor, MI — September 2023 – Present</em></p>
-            <ul>
-              <li>Assisted in leading environmental education programs, including fossil exploration, fire building, and tree planting.</li>
-            </ul>
+            <div class="experience-logo">
+              <img src="logos/freeman.png" alt="Freeman Environmental Education Center logo" />
+            </div>
+            <div class="experience-content">
+              <h3>Freeman Environmental Educational Center | Volunteer Naturalist</h3>
+              <p><em>Ann Arbor, MI — September 2023 – Present</em></p>
+              <ul>
+                <li>Assisted in leading environmental education programs, including fossil exploration, fire building, and tree planting.</li>
+              </ul>
+            </div>
           </section>
 
           <section class="experience-item">
-            <h3>Jack’s Hardware | Sales Manager</h3>
-            <p><em>Ann Arbor, MI — May 2023 – November 2025</em></p>
-            <ul>
-              <li>Trained new employees, improving service efficiency and customer satisfaction.</li>
-              <li>Optimized inventory ordering, reducing overhead costs by 6%.</li>
-            </ul>
-          </section>
-
-          <section class="experience-item">
-            <h3>Ann Arbor YMCA Camp Algonquian</h3>
-            <p><em>Ann Arbor, MI — Summers 2018 – 2026</em></p>
-            <ul>
-              <li><strong>Masters Capstone Collaborator (2025-2026):</strong> Created the Camp AGQ Field Guide, a tool for educating campers, staff, and alumni, on the nature and ecology on the summer camp property.</li>
-              <li><strong>Leaders in Training Program Director (2022):</strong> Led leadership development for 30–40 teenagers per session, enhancing collaboration and communication.</li>
-              <li><strong>Store Manager (2021):</strong> Managed camp store operations including sales and inventory control.</li>
-              <li><strong>Full Summer Staff (2020), Junior Staff (2019), Counselor in Training (2018):</strong> Supported youth programs promoting engagement and personal growth.</li>
-              <li>Received Lifeguard and CPR/First Aid Certifications each summer.</li>
-            </ul>
+            <div class="experience-logo">
+              <img src="logos/jacks.png" alt="Jack's Hardware logo" />
+            </div>
+            <div class="experience-content">
+              <h3>Jack’s Hardware | Sales Manager</h3>
+              <p><em>Ann Arbor, MI — May 2023 – November 2025</em></p>
+              <ul>
+                <li>Trained new employees, improving service efficiency and customer satisfaction.</li>
+                <li>Optimized inventory ordering, reducing overhead costs by 6%.</li>
+              </ul>
+            </div>
           </section>
         </article>
 

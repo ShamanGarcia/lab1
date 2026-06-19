@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Camp AGQ Field Guide - Flipbook</title>
+  <style>
+    :root { --bg:#203124; --paper:#fff; --accent:#77b36b; --shadow:rgba(0,0,0,.35); }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; font-family: Georgia, 'Times New Roman', serif; background: radial-gradient(circle at top, #45634b, var(--bg)); color:#fff; display:flex; flex-direction:column; align-items:center; }
+    header { width:min(1100px, 100%); padding:18px 18px 8px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+    h1 { font-size:clamp(1.1rem, 2vw, 1.8rem); margin:0; letter-spacing:.03em; }
+    .toolbar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+    button { border:0; border-radius:999px; padding:10px 14px; background:#f6f3e9; color:#1f3324; font-weight:700; cursor:pointer; box-shadow:0 2px 8px var(--shadow); }
+    button:hover { transform:translateY(-1px); }
+    button:disabled { opacity:.45; cursor:not-allowed; transform:none; }
+    .counter { min-width:118px; text-align:center; padding:9px 12px; background:rgba(255,255,255,.12); border-radius:999px; }
+    main { width:100%; flex:1; display:grid; place-items:center; padding:10px 16px 28px; }
+    .stage { width:min(94vw, 1100px); perspective:2200px; position:relative; }
+    .book { position:relative; width:100%; aspect-ratio:17/11; margin:auto; filter:drop-shadow(0 22px 24px rgba(0,0,0,.38)); transform:rotate(var(--rotation, 0deg)); transition:transform .35s ease; }
+    .page { position:absolute; top:0; bottom:0; width:50%; transform-style:preserve-3d; transition:opacity .25s ease; background:var(--paper); overflow:hidden; border:1px solid rgba(0,0,0,.15); }
+    .page img { width:100%; height:100%; object-fit:contain; display:block; background:#fff; }
+    .page.left { left:0; border-radius:6px 0 0 6px; }
+    .page.right { right:0; border-radius:0 6px 6px 0; }
+    .page.hidden { opacity:0; pointer-events:none; }
+    .page.left::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(0,0,0,.08), rgba(255,255,255,0) 72%, rgba(0,0,0,.18)); mix-blend-mode:multiply; opacity:.5; }
+    .page.right::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(0,0,0,.18), rgba(255,255,255,0) 28%, rgba(0,0,0,.08)); mix-blend-mode:multiply; opacity:.5; }
+    .hit { position:absolute; top:0; bottom:0; width:50%; z-index:20; cursor:pointer; }
+    .hit.left { left:0; } .hit.right { right:0; }
+    .hint { text-align:center; color:rgba(255,255,255,.75); font-family:system-ui, sans-serif; font-size:.92rem; margin-top:12px; }
+    @media (max-width:700px){ header{justify-content:center;text-align:center}.stage{width:94vw} button{padding:9px 12px}.counter{order:9;width:100%} }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>The Camp AGQ Field Guide</h1>
+    <div class="toolbar">
+      <button id="first" aria-label="First page">⟪ First</button>
+      <button id="prev" aria-label="Previous page">‹ Prev</button>
+      <span class="counter" id="counter">Page 1 / 52</span>
+      <button id="next" aria-label="Next page">Next ›</button>
+      <button id="rotate" aria-label="Rotate pages 90 degrees">Rotate 90°</button>
+      <button id="last" aria-label="Last page">Last ⟫</button>
+    </div>
+  </header>
+  <main>
+    <section class="stage" aria-label="Flippable PDF book">
+      <div class="book" id="book"></div>
+      <div class="hit left" id="leftHit" title="Previous page"></div>
+      <div class="hit right" id="rightHit" title="Next page"></div>
+      <div class="hint">Click the page edges or use ← / → keys to flip pages.</div>
+    </section>
+  </main>
+  <script>
+    const pages = Array.from({ length: 52 }, (_, i) => `pages/page-${String(i + 1).padStart(3, '0')}.jpg`);
+    const book = document.getElementById('book');
+    const counter = document.getElementById('counter');
+    const btnPrev = document.getElementById('prev');
+    const btnNext = document.getElementById('next');
+    const btnFirst = document.getElementById('first');
+    const btnLast = document.getElementById('last');
+    const btnRotate = document.getElementById('rotate');
+    let index = 0;
+    let rotation = 0;
+
+    pages.forEach((src, i) => {
+      const div = document.createElement('div');
+      div.className = 'page';
+      div.dataset.index = i;
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = `Page ${i + 1}`;
+      img.loading = i < 3 ? 'eager' : 'lazy';
+      div.appendChild(img);
+      book.appendChild(div);
+    });
+
+    function update() {
+      document.querySelectorAll('.page').forEach((p, i) => {
+        p.className = 'page hidden';
+
+        if (index === 0 && i === 0) {
+          p.className = 'page right';
+        }
+
+        if (index > 0) {
+          if (i === index) p.className = 'page left';
+          if (i === index + 1) p.className = 'page right';
+        }
+      });
+
+      if (index === 0) {
+        counter.textContent = `Page 1 / ${pages.length}`;
+      } else {
+        const rightPage = Math.min(index + 2, pages.length);
+        counter.textContent = `Pages ${index + 1}-${rightPage} / ${pages.length}`;
+      }
+
+      btnPrev.disabled = btnFirst.disabled = index === 0;
+      btnNext.disabled = btnLast.disabled = index >= pages.length - 2;
+    }
+    function go(delta) {
+      if (delta > 0) {
+        index = index === 0 ? 1 : index + 2;
+      } else {
+        index = index <= 1 ? 0 : index - 2;
+      }
+
+      index = Math.max(0, Math.min(pages.length - 1, index));
+      update();
+    }
+    function setPage(i) {
+      if (i <= 0) index = 0;
+      else index = i % 2 === 0 ? i - 1 : i;
+      update();
+    }
+    function rotatePages() {
+      rotation = (rotation + 90) % 360;
+      book.style.setProperty('--rotation', `${rotation}deg`);
+    }
+
+    btnPrev.addEventListener('click', () => go(-1));
+    btnNext.addEventListener('click', () => go(1));
+    btnFirst.addEventListener('click', () => setPage(0));
+    btnLast.addEventListener('click', () => setPage(pages.length - 1));
+    btnRotate.addEventListener('click', rotatePages);
+    document.getElementById('leftHit').addEventListener('click', () => go(-1));
+    document.getElementById('rightHit').addEventListener('click', () => go(1));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'ArrowRight') go(1);
+      if (e.key === 'Home') setPage(0);
+      if (e.key === 'End') setPage(pages.length - 1);
+    });
+    update();
+  </script>
+</body>
+</html>
